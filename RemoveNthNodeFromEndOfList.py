@@ -43,7 +43,8 @@ class Solution():
         if lengthOfLinkedList == 1 and n ==1:
             head = None
             return head
-
+        
+        #preceding node to the one to be removed
         lengthToTravere = lengthOfLinkedList-n
         i=1
         
