@@ -55,14 +55,8 @@ class Solution():
         #tmp holds the node just before the node to be removed
         #tmp2 is the node to be removed
         if tmp == head:
-            #2nd node, next to head
-            if lengthToTravere == 1:
-                tmp2 = tmp.next
-                head.next = tmp2.next
-                return head
-
             #head node is to be removed
-            elif lengthToTravere == 0:
+            if lengthToTravere == 0:
                 head = tmp.next
                 return head
 
