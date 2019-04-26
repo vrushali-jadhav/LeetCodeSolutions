@@ -16,20 +16,16 @@ class Solution():
             else:
                 dict1[c] += 1
         
-        taslist = list(t)
-        
-        for char in taslist:
+        for char in t:
             if char in dict1:
                 dict1[char]-=1
             else:
-                print("yaha se")
                 return False
             
             if dict1[char] == 0:
                 dict1.pop(char)
                 
         if dict1:
-            print(dict1)
             return False
         else:
             return True
