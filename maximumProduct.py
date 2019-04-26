@@ -4,9 +4,16 @@ class Solution():
         :type nums: List[int]
         :rtype: int
         """
-        global_max, local_max, local_min = float("-inf"), 1, 1
+        global_max = float("-inf")
+        local_max = 1
+        local_min = 1
+
         for x in nums:
-            local_max, local_min = max(x, local_max * x, local_min * x), min(x, local_max * x, local_min * x)
+            local_max = max(1, local_max)
+            if x > 0:
+                local_max, local_min = local_max * x, local_min * x
+            else:
+                local_max, local_min = local_min * x, local_max * x
             global_max = max(global_max, local_max)
         return global_max
 
