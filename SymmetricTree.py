@@ -7,54 +7,29 @@ class Solution:
         stack = []
         if not root:
             return True
-        if not root.left and not root.right:
-            return True
-        elif root.left and root.right:
-            if root.left.val == root.right.val:
-                stack.append(root.left)
-                stack.append(root.right)
-                #we need a tmp stack for storing all the root on the same level
-                tmpStack = []
-                while(stack):
-                    #we are taking 1st and last root from the stack for comparision
-                    l_root = stack.pop(0)
-                    r_root = stack.pop()
-                    if not tmpStack:
-                        tmpStack.append(l_root)
-                        tmpStack.append(r_root)
-                    else:
-                        #a child of a node should be added in the middle (like how tree would look)
-                        ind = len(tmpStack)/2
-                        tmpStack.insert(ind, l_root)
-                        tmpStack.insert(ind+1, r_root) 
-                    #leaf node
-                    if not l_root.left and not r_root.left and not l_root.right and not r_root.right:
-                        return True
-                    
-                    if (not l_root.left and r_root.right) or (l_root.left and not r_root.right):
-                        return False
-                    elif l_root.left and r_root.right:
-                        if l_root.left.val != r_root.right.val:
-                            return False
+        
+        stack.append(root.left)
+        stack.append(root.right)
 
-                    if (not l_root.right and r_root.left) or (l_root.right and not r_root.left):
-                        return False                
-                    elif l_root.right and r_root.left:
-                        if l_root.right.val != r_root.left.val:
-                            return False
-                    #add nodes to the stack only if it is non-null
-                    if not stack:
-                        while(tmpStack):
-                            root = tmpStack.pop(0)
-                            if root.left:
-                                stack.append(root.left)
-                            if root.right:
-                                stack.append(root.right)
-            else:
+        while(stack):
+            l, r = stack.pop(), stack.pop()
+            # dont check for roots right and left child already. If they are none, add them still
+            # this condition will atek of them being none
+            if not l and not r:
+                continue
+            # you had this problem where you were checking value of none nodes. It was erroring out 
+            # this takes care of that situation. 
+            # if both are none, that fine. But its not a mirror image if just one of them is none.
+            if (not l) or (not r) or (l.val !=r.val) :
                 return False
-        else:
-            return False
+                
+            stack.append(l.left)
+            stack.append(r.right)
+            stack.append(l.right)
+            stack.append(r.left)
 
+        return True
+        
 class Tree:
     root = None
     stackOfRoots = []
