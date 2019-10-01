@@ -7,7 +7,8 @@ class Solution:
         """
         majorityNum = len(nums)/2
         frequency = collections.Counter(nums)
-    
+        
+        
         for key, val in frequency.items():
             if val > majorityNum:
                 return key
