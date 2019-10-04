@@ -5,10 +5,10 @@ class Solution:
         :rtype: int
         """
         sortedList = sorted(nums) #will be used for comparing the actual array
-        #the lenghth from teh 1st index to the last index that don't match, need to replaced
+        #The length from the 1st index to the last index that don't match, need to replaced
         left, right = 0, len(nums)-1
-        #a while loop of this sort is will give TC of (nlogn)
-        #as you dont even enter the loop if niether first nor the last number match the sorted arrays first/last number
+        #A while loop of this sort is will give TC of (nlogn)
+        #As you dont even enter the loop if niether first nor the last number match the sorted arrays first/last number
         while (sortedList[left] == nums[left]) or (sortedList[right] == nums[right]):  
             if right-left <=1 :
                 return 0   
