@@ -8,7 +8,7 @@ class Solution():
         j = len(nums)-1
         while i < j:
             if nums[i] == 0:
-                nums.pop(i)
+                nums.pop(i) #do not increment i as you are removing i from this index
                 nums.append(0)
                 j -= 1 #reduce j as you have appended an extra 0 to the end
             else:
